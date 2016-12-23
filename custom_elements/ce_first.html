@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!-- druga mozliwosc instancjowowania -->
+<!--<nice-comment></nice-comment>-->
+
+<script>
+    // webstorm ladnie podpowiada jak sie mu wpisze HTML*Element rozne typy
+    var NiceCommentPrototype = Object.create(HTMLElement.prototype);
+    NiceCommentPrototype.createdCallback = function () {
+        console.log('added');
+        this.innerHTML = `
+            <h2>comment</h2>
+            <textarea name="content-text" id="content-text" cols="30" rows="10"></textarea><br>
+            <input type="submit" value="Slij">
+        `;
+    };
+    let NiceComment = document.registerElement('nice-comment', {
+        prototype: NiceCommentPrototype
+    });
+    //pierwsza mozliwosc instancjonowania
+    //    document.body.appendChild(new NiceComment())
+
+    //trzecia mozliwosc
+//    document.body.innerHTML += '<nice-comment></nice-comment>';
+
+    //ostatni spsoob
+    var comment = document.createElement('nice-comment');
+    document.body.appendChild(comment);
+</script>
+</body>
+</html>

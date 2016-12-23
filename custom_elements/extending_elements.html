@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!-- to nie da zadnego efektu -->
+<my-button></my-button>
+
+<!-- extendy mozna tylko uzyc jako dekoratory do rozszerzanych elementow -->
+<button is="my-button"></button>
+<button is="my-button" value="nowa"></button>
+<script>
+    var ElemPrototype = Object.create(HTMLButtonElement.prototype);
+
+    ElemPrototype.createdCallback = function(){
+        this.innerHTML = 'Mój button';
+        this.value = this.value || 'domyślne'; // to przypisze wartosc do value na buttonie jesli  nie zdefiniujemy innej
+        // przypisanie bez lazy loadingu nadpisywalo by wartosc z elementu
+        this.style.color = '#FFAA11';
+    };
+
+    const MyButton = document.registerElement('my-button',{
+        prototype: ElemPrototype,
+        extends: 'button' // przemienia element w dekorator na rozszerzanym
+    });
+
+    document.body.appendChild(new MyButton()); // tak sie dla odmiany tez da utworzyc podziedziczony
+
+    //tez zadziala: createElement(base [, extension]);
+//    document.createElement('button', 'my-button');
+</script>
+</body>
+</html>

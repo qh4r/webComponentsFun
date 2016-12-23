@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<button onclick="toggleElem()">toggle</button>
+<cb-test></cb-test>
+<script>
+    let Proto = Object.create(HTMLElement.prototype);
+
+    Proto.createdCallback = function(){
+        const toggleColor = function(){
+            this.querySelector('#header').classList.toggle('red');
+            this.setAttribute('inside', 1337)
+        }.bind(this);
+
+        console.log('created');
+        this.innerHTML = '<h2 id="header">tesssst</h2><br><button>kolor</button>'
+        this.querySelector('button').onclick = toggleColor;
+    };
+
+    Proto.attachedCallback = function(){
+        console.log('attached');
+    };
+
+    Proto.detachedCallback = () => console.log('detached');
+
+    Proto.attributeChangedCallback = function(attrName, oldVal, newVal) {
+        console.log('asd')
+        console.log(`${attrName} :: ${oldVal} -> ${newVal}`);
+    };
+
+    // MUSIMY DODAC WSZYSTKO DO PROTOTYPU PRZED UTWORZENIEM (REJESTRACJA) ELEMENTU!!!
+
+    var CbTest = document.registerElement('cb-test', {
+        prototype: Proto
+    });
+
+    function toggleElem() {
+        let $button = document.querySelector('cb-test');
+        if($button){
+            $button.setAttribute('data-test', 1);
+
+//            document.body.removeChild($button);
+
+            $button.remove();
+        } else {
+            document.body.appendChild(new CbTest());
+        }
+    }
+</script>
+
+</body>
+</html>
