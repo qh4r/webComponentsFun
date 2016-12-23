@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<template>
+    <p>z templatu</p>
+    <script>
+        console.log('temmplate wczytany');
+        // skrypt wczytany dopiero gdy template zostanie sklonowany i dodany do dom
+        // bez tego template nie zostanie wykonany
+    </script>
+</template>
+
+<script>
+    var template = document.querySelector('template');
+    console.log(template);
+    var clone = document.importNode(template.content, true);
+    // drugi parametr okresla czy ten klon bedzie gleboka kopia czy nie
+    document.body.appendChild(clone);
+</script>
+</body>
+</html>

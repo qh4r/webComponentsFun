@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<template id="data-template">
+    <p class="line">
+        Daneee:
+        <span class="message">
+
+        </span>
+        liczba kopii:
+        <span class="copies-number"></span>
+    </p>
+
+    <template id="inner">
+        <p>wewnetrzny</p>
+    </template>
+
+    <script>
+        /// zagniezdzony template trzeba osobno zaladowac i dodac
+        
+        var thisItem = document.querySelector('p.line:last-of-type');
+        var elem = thisItem.querySelector('.copies-number');
+        if (!(+elem.textContent % 5)) {
+            var innerTemp = document.querySelector('#inner');
+            var clone = document.importNode(innerTemp.content, true);
+            thisItem.appendChild(clone);
+        }
+    </script>
+</template>
+<button onclick="copy()">kop juj ten plejt, he he</button>
+<script>
+    var copy = (function () {
+        var template = document.querySelector('#data-template');
+        var copiesNumber = 0;
+
+        return function copy() {
+            var clone = document.importNode(template.content, true);
+            console.log(clone);
+            console.log(clone.querySelector('.message'));
+            clone.querySelector('.message').textContent = 'super tempalte!';
+            console.log(clone.querySelector('.copies-number'));
+            clone.querySelector('.copies-number').textContent = '' + ++copiesNumber;
+            document.body.appendChild(clone);
+        }
+    })()
+
+</script>
+</body>
+</html>
