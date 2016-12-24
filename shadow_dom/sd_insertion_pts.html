@@ -15,17 +15,33 @@
     tu Light dom!
 </div>
 
+<!--WIELE SHADOW ROOTOW JEST DEPRECATED-->
+<!--NOWY SPOSOB TO UZYWANIE SLOTOW-->
 <script>
     let host = document.querySelector('#host');
     let rootLvl1 = host.createShadowRoot();
     rootLvl1.innerHTML = '<div>shadow lvl 1</div>';
 
-    // DEKLARACJA DRUGIEGO SHADOW ROOTA PRZESŁANIA PIERWSZY!!!
+    // SHADOW ROOTY TWORZONE SA W KOLEJCE LAST IN FIRST OUT
+    // DEKLARACJA DRUGIEGO SHADOW ROOTA WYPRZEDZA PIERWSZY!!!
     // element rootlvl1 zostaje wypchany na 2 pozycje przez nowa dekalracje
     let rootLvl2 = host.createShadowRoot();
+
     // dodanie taga shadow pozwala wyrenderowac inny element z shadow dom root
     // oczekujacy w kolejce
-    rootLvl2.innerHTML = '<div>shadow lvl 2 <shadow></shadow></div>'
+    rootLvl2.innerHTML = '<div>shadow lvl 2</div><content></content><shadow></shadow><shadow></shadow>';
+    // tylko pierwsyz tag ma efekt
+    // moze byc tylko 1 shadow tag na 1 shadow root czyli 2 <shadow> nie zadzialaja
+    // trzbea zagniezdzac tak jak tu widac
+    let rootLvl3 = host.createShadowRoot();
+    rootLvl3.innerHTML = `
+        <div>shadow lvl 3</div>
+                <content></content>
+        <shadow></shadow>
+    `; // bedzie 3 -> 2 -> 1
+    // CONTENT Z KOLEI JEST ZACHLANNIE WYCIAGANY PRZEZ:
+    //  OSTATNIO WSADZONY W KOLEJKE!!!!!
+    // SHADOW ROOT
 </script>
 </body>
 </html>

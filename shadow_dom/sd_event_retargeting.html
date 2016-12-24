@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>retargeting</title>
+</head>
+<body>
+<button id="light-button">W light domie</button>
+
+<div id="host">
+    <button id="shadow-button">content shadowdomu</button>
+
+    <select id="shadow-drop">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+</div>
+<template>
+    <fieldset>
+        <button id="deep-shadow-button">czysty shadowdom</button>
+
+        <select id="deep-shadow-drop">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+        <hr>
+        <legend>Shadow</legend>
+        <content></content>
+    </fieldset>
+</template>
+<script>
+    let $host = document.querySelector('#host');
+    let $$root = $host.createShadowRoot();
+    $$root.appendChild(
+            document.importNode(
+                    document.querySelector('template').content, true
+            )
+    );
+
+    document.addEventListener('click', function(e){
+        console.log(`klik: ${e.target.id}`);
+    });
+    document.addEventListener('change', function(e){
+        console.log(`change: ${e.target.id}`);
+    })
+
+    // EVENTY SA PROPAGOWANE PRZEZ CONTENT WSTRZYKIWANY DO SHADO DOMU,
+    // ALE NIE PRZEZ TO CO JET NATYWNIE W SHADOW DOMIE
+    // CHANGE W OGOLE NIE WIDOCZNY W SD, CLICK WYKRYWANY JAKO CLICK NA HOST
+</script>
+</body>
+</html>

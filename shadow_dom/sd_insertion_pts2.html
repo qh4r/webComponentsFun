@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insertion pts 2</title>
+</head>
+<body>
+<div id="host">
+    <ul>
+        <li>Miluś</li>
+        <li>Puszek</li>
+        <li>Kudłacz</li>
+    </ul>
+</div>
+
+<template>
+    <h1>Imiona pieszczoszków:</h1>
+    <content id="teest"></content>
+</template>
+<script>
+    let host = document.querySelector('#host');
+    let root = host.createShadowRoot();
+    let template = document.importNode(document.querySelector('template').content, true);
+    root.appendChild(template);
+
+    let distributedNodes = root.querySelector('content').getDistributedNodes();
+    console.log(distributedNodes); // zwraca tylko top level
+
+    let destinationInsertionPoints = document.querySelector('ul').getDestinationInsertionPoints();
+    console.log(destinationInsertionPoints); // zwraca wszystkie meijsca gdzie dany element zostal wstrzyknity w shadow dom
+</script>
+</body>
+</html>
