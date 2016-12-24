@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>shadow dom</title>
+    <style>
+        h2 {
+            color: red;
+        } /* nie zadzialaa na to co w shadow domie */
+    </style>
+</head>
+<body>
+<video controls></video>
+<!--zeby bylo widac dom video trzeba w chromie w settingsach(f1) ustawic opcje show user shadowdom-->
+<input type="date">
+<!-- inputy tez maja shadowdom -->
+
+<br>
+<h2>testy shadow domaaa</h2>
+<div id="host">
+
+</div>
+<button onclick="toggleColor()">toggle</button>
+<template id="header2">
+    <!--shadow dom ma osobne drzewo i style
+    ale jesli uzyjemy templatatu i stylu wewnatrz to zadziala-->
+    <style>
+        h2 {
+            color: purple;
+        }
+
+        .green {
+            color: green;
+        }
+    </style>
+    <h2>z shadow doma </h2>
+    <!--query selectory tez dzialaja tylko na light dom-->
+</template>
+
+<script>
+    let $host = document.querySelector('#host');
+    let root = $host.createShadowRoot(); // tak aktywujemy
+    let $template = document.querySelector('template#header2');
+    root.appendChild(document.importNode($template.content,  true));
+
+    function toggleColor() {
+        // do zawartosci shadow domu da sie dosiegnac przez root
+        root.querySelector('h2').classList.toggle('green');
+    }
+
+    // SHADOW DOM NIE ENKAPSULUJE JAVASCRIPTU
+</script>
+</body>
+</html>
