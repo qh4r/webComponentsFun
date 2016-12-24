@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shadow styles</title>
+</head>
+<body>
+<div id="host">
+    <h2>stylowanie hosta shadowdomaa</h2>
+</div>
+
+<div class="darkness">
+    <h2>rodzic kontenera 2</h2>
+    <div id="host2" class="purple">
+    <h2>inny host</h2>
+</div></div>
+<template>
+    <style>
+        :host {
+            border: dashed 2px crimson;
+        }
+        :host(:hover) {
+            border-color: greenyellow;
+        }
+        :host(.purple) { /*w nawiasie klasa ktora musi psoiadac host
+                        by strigerowac*/
+            border-color: rebeccapurple;
+        }
+        :host(.purple:hover){ /*to przebija wyzsze (wiecej pkt)*/
+            background-color: #ffeb83;
+        }
+         /*:host h2 {*/
+         h2 { /*i werjsha z host i bez ma  taki sam efekt i
+                styluje to co ejst w shadow domie*/
+            color: aqua;
+        }
+        /*STYLOWANIE HOSTA SHADOW DOMU*/
+
+        /*TO WCIAZ DZIALA NA hosta A NIE na odszukany element*/
+        :host-context(.darkness){
+            /* host-context szuka czegos co spelni warunek
+             na JAKIMKOLWIEK RODZICU */
+            background-color: darkslategrey;
+
+        }
+
+        :host-context(.darkness):host {
+            border-color: aquamarine;
+            padding: 20px;
+        }
+    </style>
+    <fieldset>
+        <legend>shadow</legend>
+        <content></content>
+        <h2>content content </h2>
+    </fieldset>
+</template>
+
+<script>
+    let $host = document.querySelector('#host');
+    let $$root = $host.createShadowRoot();
+    let template = document.querySelector('template');
+//    $$root.appendChild(template.content); // to tez by zadzialalo
+                                            // ale nie stworzy kopii
+    $$root.appendChild(document.importNode(template.content, true));
+
+    let $host2 = document.querySelector('#host2');
+    let $$root2 = $host2.createShadowRoot();
+    $$root2.appendChild(document.importNode(template.content, true));
+</script>
+
+</body>
+</html>
