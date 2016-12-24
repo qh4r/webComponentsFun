@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shadow dom content</title>
+    <style>
+        h1 {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+
+<!--tagi bedace kontentem pozostaja w light domie! -->
+<my-comment>
+    <h1>No cześć</h1>
+    <p>co slychac</p>
+    <!-- wielokrotne uzycia danego typu tagow wyswietla wielokrotnie tag-->
+    <p>no co no co</p>
+
+    <!-- jesli to byl by p to wyswietlil by sie razem z p bo zostal by tak wczesniej dopasowany -->
+    <h2 class="footer">wszystko pokazuje sie w miejscu odpowiednich contentow, tak pieknie</h2>
+
+
+    <!-- jesli nie am contetu bez selecta to nie pasujace tagi nie zostana wyswietlone -->
+    <h2>test test</h2>
+
+    <input type="button" value="Reset">
+</my-comment>
+
+<template id="comment-template">
+    <!--elementy dodane przez content SA SYLOWANE GLOBALNYMI STYLAMI!!!-->
+    <h1>shdow doom start</h1>
+    <fieldset>
+        <!--ten tag sprawil by ze wszystko londowalo by do niego-->
+        <!--<content></content>-->
+        <legend>
+            <!--content bez atrybutu bedzie wyswietlaal wszystko, z atrybutem select tylko typ w atrybucie-->
+            <content select="h1"></content>
+        </legend>
+        <content select="p"></content>
+
+        <textarea style="width: 400px; height: 200px;"></textarea>
+        <br>
+        <input type="submit" value="Skomentuj">
+        <content select="input[type=button]"></content>
+
+        <content select="h2.footer"></content>
+
+        <!-- ten tag wyswietli wszystko co nie zostalo dopasoowane -->
+        <content></content>
+    </fieldset>
+</template>
+
+<!--SELEKTORY W KONTENCIE DZIALAJA JAK W CSS'IE-->
+
+<script>
+    var CommentPrototype = Object.create(HTMLElement.prototype);
+
+    CommentPrototype.createdCallback = function () {
+        var template = document.querySelector('#comment-template');
+        var commentShadow = this.createShadowRoot();
+        commentShadow.appendChild(document.importNode(template.content, true));
+    };
+
+    let Comment = document.registerElement('my-comment', {
+        prototype: CommentPrototype
+    });
+</script>
+</body>
+</html>

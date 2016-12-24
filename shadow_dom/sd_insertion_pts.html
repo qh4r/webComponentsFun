@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>shadow insertion points</title>
+</head>
+<body>
+<!--tag shadow pozwala na zagniezdzanie shadow domu-->
+
+<div id="host">
+    <!--jesli nie ma tagu content to zawartosc sie nie wyswietli gdy uzywane shado dom-->
+    tu Light dom!
+</div>
+
+<script>
+    let host = document.querySelector('#host');
+    let rootLvl1 = host.createShadowRoot();
+    rootLvl1.innerHTML = '<div>shadow lvl 1</div>';
+
+    // DEKLARACJA DRUGIEGO SHADOW ROOTA PRZESŁANIA PIERWSZY!!!
+    // element rootlvl1 zostaje wypchany na 2 pozycje przez nowa dekalracje
+    let rootLvl2 = host.createShadowRoot();
+    // dodanie taga shadow pozwala wyrenderowac inny element z shadow dom root
+    // oczekujacy w kolejce
+    rootLvl2.innerHTML = '<div>shadow lvl 2 <shadow></shadow></div>'
+</script>
+</body>
+</html>
