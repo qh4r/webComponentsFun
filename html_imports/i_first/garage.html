@@ -1,0 +1,55 @@
+<template>
+    <ul>
+        <li>Honda</li>
+        <li>Suzuki</li>
+        <li>Mitshubishi</li>
+        <li>Warszawa</li>
+    </ul>
+</template>
+
+<ul>
+    <li>Subaru</li>
+    <li>Fiat</li>
+    <li>Ford</li>
+    <li>BMW</li>
+</ul>
+
+
+<p id="message">
+    Pan świata wie, że serce mu i stanęły: tak myślili starzy. A na urząd wielkie polowanie. I wnet sierpy gromadnie
+    dzwoniąc we dworze jak wytnie dwa smycze chartów przedziwnie udawał psy głupie a ciotka w domu dostatek mieszka
+    i ubiory. Była to mówiąc, że nasi synowie i znowu jak po imieniu. Herb Horeszków, Półkozic, jaśniał na sądy
+    graniczne dla wieku, urodzenia, rozumu, urzędu. ogon też same portrety na Ojczyzny.
+</p>
+<script>
+    // TO MUSI BYC PRZECHOWANE W CZASIE WYWOLANIA SKRYPTU
+    // potem w callbacku getMsg document.currentScript bedzie null
+    // current script zawiera w danym momencie przechowywany skrypt
+    // ownerDocument refernecje do doumentu w ktorym ten skrypt
+    // sie znajduje
+    const owner = document.currentScript.ownerDocument;
+    
+    // ladny sposob na tworzenie komponentow
+    (function () {
+        const scriptRefrence = document.currentScript.ownerDocument;
+        let prototype = Object.create(HTMLElement.prototype);
+        prototype.createdCallback = function () {
+            let $template = scriptRefrence.querySelector('template');
+            let $clone = document.importNode($template.content, true);
+            let $$root = this.createShadowRoot();
+            console.log($template.content, $$root);
+            $$root.appendChild($clone);
+        };
+        document.registerElement('cars-list', {prototype});
+    })();
+
+    function getMsg() {
+        // to nie zadziala bo skrypty odpalane sa tak jakby na
+        // tym pliku ktory importuje, a on nie ma inny message
+//        let msg = document.querySelector('#message');
+
+        // poprawne rozwiazanie:
+        let msg = owner.querySelector('#message');
+        console.log(msg && msg.innerText);
+    }
+</script>

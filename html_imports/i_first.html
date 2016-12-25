@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<link rel="import" href="i_first/garage.html" id="my-garage">-->
+    <!--da sie tez programistycznie-->
+    <script>
+        let link = document.createElement('link');
+        link.rel = 'import';
+        link.href = 'i_first/garage.html';
+        link.id = 'my-garage';
+        document.head.appendChild(link);
+    </script>
+    <title>Imports 1</title>
+</head>
+<body>
+<cars-list></cars-list>
+<a href="#" onclick="getMsg()">Log msg</a>
+<p hidden id="message">to nie ta wiadomosc</p>
+<script>
+    let content = document.querySelector('#my-garage').import;
+    let carsList = content.querySelector('ul');
+    document.body.appendChild(carsList);
+
+</script>
+</body>
+</html>
