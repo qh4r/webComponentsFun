@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>shadow unresolved</title>
+    <style>
+        x-test:unresolved {
+            color: crimson;
+        }
+
+        x-test {
+            color: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+<!-- wszystkie elementy customowe musza miec -
+  poniewaz jego obecnosci gwarantuje ze nie pokryja sie z wbudowanymi
+  elementy wbudowane nigdy nie beda zawieraly '-'-->
+<x-test>
+    testy test testing
+</x-test>
+
+<script>
+    // bez kopiowania prototypu, ta sama referencja ale to tylko prosty przyklad
+    let prototype = Object.create(HTMLElement.prototype);
+    setTimeout(function(){
+        document.registerElement('x-test', {prototype});
+    }, 3000)
+</script>
+</body>
+</html>

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f72c055d-79f5-416d-8bf3-9e202a1dbbed" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shadow_dom_styling/sds_host.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shadow_dom_styling/sds_content.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shadow_dom_styling/sds_shadow_selector.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/shadow_dom_styling/sds_unresolved.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="webComponentsFun.iws" />
@@ -27,11 +29,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="sds_host.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sds_host.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shadow_dom_styling/sds_host.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="245">
               <caret line="28" column="63" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sds_content.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shadow_dom_styling/sds_content.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="398">
+              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sds_shadow_selector.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shadow_dom_styling/sds_shadow_selector.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sds_unresolved.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/shadow_dom_styling/sds_unresolved.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -76,6 +108,9 @@
         <option value="$PROJECT_DIR$/shadow_dom/sd_event_retargeting.html" />
         <option value="$PROJECT_DIR$/shadow_dom_styling/sds_first.html" />
         <option value="$PROJECT_DIR$/shadow_dom_styling/sds_host.html" />
+        <option value="$PROJECT_DIR$/shadow_dom_styling/sds_content.html" />
+        <option value="$PROJECT_DIR$/shadow_dom_styling/sds_shadow_selector.html" />
+        <option value="$PROJECT_DIR$/shadow_dom_styling/sds_unresolved.html" />
       </list>
     </option>
   </component>
@@ -235,12 +270,12 @@
       <workItem from="1482452873977" duration="2838000" />
       <workItem from="1482515117387" duration="9778000" />
       <workItem from="1482565499621" duration="4398000" />
-      <workItem from="1482585196039" duration="7622000" />
+      <workItem from="1482585196039" duration="13070000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24636000" />
+    <option name="totallyTimeSpent" value="30084000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="697" height="735" extended-state="0" />
@@ -434,6 +469,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
           <caret line="28" column="63" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shadow_dom_styling/sds_content.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shadow_dom_styling/sds_shadow_selector.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shadow_dom_styling/sds_unresolved.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>

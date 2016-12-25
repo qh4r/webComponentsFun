@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shadow styling 3</title>
+</head>
+<style>
+    /* ::SHADOW JEST DEPRECATED tak samo DEEP *.
+
+    /*czy takie stylowanie to
+        dobry pomysl to pojecie wzgledne */
+    car-list::shadow li {
+        color: crimson;
+        list-style-type: square;
+    }
+
+    /* tez deprecated, troche dziwne,
+     dzila jak shadow ale na zagniezdzone elementy */
+    car-list /deep/ ul{
+        border: 1px crimson solid;
+    }
+
+    /* zawsze trzeba odniesc sie do htmlelementu (rodzica)
+     ktorego shadow sie chce stylowac */
+
+    video /deep/ input[type="range"] {background-color: red}
+</style>
+<body>
+<car-list>
+    i dalej
+    <dealers-list></dealers-list>
+</car-list>
+<video controls></video>
+<template id="cars">
+    <ul>
+        <li>Ferrari</li>
+        <li>Lamborgini</li>
+        <li>Fiat</li>
+    </ul>
+    <content></content>
+</template>
+
+<template id="dealers">
+    <ul>
+        <li>Janusz</li>
+        <li>Paweł</li>
+        <li>Marian</li>
+    </ul>
+</template>
+
+<script>
+    let CarList = Object.create(HTMLElement.prototype);
+
+    CarList.createdCallback = function(){
+        let template = document.querySelector('#cars');
+        $$root = this.createShadowRoot();
+        $$root.appendChild(document.importNode(template.content, true));
+    };
+
+    document.registerElement('car-list', {
+        prototype: CarList
+    });
+
+    let DealerList = Object.create(HTMLElement.prototype);
+
+    DealerList.createdCallback = function(){
+        let template = document.querySelector('#dealers');
+        $$root = this.createShadowRoot();
+        $$root.appendChild(document.importNode(template.content, true));
+    };
+
+    document.registerElement('dealers-list', {
+        prototype: DealerList
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shadow styling 2</title>
+</head>
+<body>
+<div id="host">
+    <button>Content Button</button>
+</div>
+
+<template>
+    <style>
+        ::content > button {
+            border: 2px solid crimson;
+            border-radius: 8px;
+            background-color: aquamarine;
+            font-family: Helvetica, "Helvetica Neue", sans-serif;
+            padding: 10px;
+            color: crimson;
+            font-weight: 800;
+            transition: all 0.2s;
+        }
+
+        ::content > button:hover {
+            background-color: dodgerblue;
+        }
+        
+        legend, fieldset {
+            color: gold;
+            border-color: gold;
+        }
+    </style>
+    <fieldset>
+        <legend>shadow</legend>
+        <content></content>
+    </fieldset>
+</template>
+
+<script>
+    let $$root = document.querySelector('#host').createShadowRoot();
+    let $template = document.querySelector('template');
+    $$root.appendChild(document.importNode($template.content, true));
+</script>
+
+</body>
+</html>
