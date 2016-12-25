@@ -2,15 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--<link rel="import" href="i_first/garage.html" id="my-garage">-->
     <!--da sie tez programistycznie-->
     <script>
-        let link = document.createElement('link');
-        link.rel = 'import';
-        link.href = 'i_first/garage.html';
-        link.id = 'my-garage';
-        document.head.appendChild(link);
+        //        let link = document.createElement('link');
+        //        link.rel = 'import';
+        //        link.href = 'i_first/garage.html';
+        //        link.id = 'my-garage';
+        //        link.onload = loaded;
+        //        document.head.appendChild(link);
+
+        // wazne by zdefiniowac przed tagiem ktory tego uzyje
+        function loaded(e) {
+            console.log('loaded!', e)
+        };
+        // TAK JAK LOADED MOZNA OBSLUGIWAC onerror !
     </script>
+
+    <!-- jesli importy maja wspolne referencje wazne by calle tych referenchi byly identyczne
+    dobry pomysl to dodanie <link rel="import" href="..."> do pliku zawierajacego wspomniane referencje
+
+    <!--i standardowo-->
+    <link rel="import" href="i_first/garage.html" id="my-garage" onload="loaded(event)">
+
     <title>Imports 1</title>
 </head>
 <body>

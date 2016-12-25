@@ -1,3 +1,11 @@
+<!--Style i skrypty sa aplikowane odrazu po improcie pliku-->
+<style>
+    a, a:active, a:link, a:visited {
+        text-decoration: none;
+        color: green;
+    }
+</style>
+
 <template>
     <ul>
         <li>Honda</li>
@@ -22,13 +30,14 @@
     graniczne dla wieku, urodzenia, rozumu, urzędu. ogon też same portrety na Ojczyzny.
 </p>
 <script>
+    console.log('import garage');
     // TO MUSI BYC PRZECHOWANE W CZASIE WYWOLANIA SKRYPTU
     // potem w callbacku getMsg document.currentScript bedzie null
     // current script zawiera w danym momencie przechowywany skrypt
     // ownerDocument refernecje do doumentu w ktorym ten skrypt
     // sie znajduje
     const owner = document.currentScript.ownerDocument;
-    
+
     // ladny sposob na tworzenie komponentow
     (function () {
         const scriptRefrence = document.currentScript.ownerDocument;
@@ -37,7 +46,6 @@
             let $template = scriptRefrence.querySelector('template');
             let $clone = document.importNode($template.content, true);
             let $$root = this.createShadowRoot();
-            console.log($template.content, $$root);
             $$root.appendChild($clone);
         };
         document.registerElement('cars-list', {prototype});
